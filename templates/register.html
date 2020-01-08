@@ -11,6 +11,16 @@
             </div>
             <div class="form-group">
                 {{ form.email.label(class="form-control-label") }}
+
+                {% if form.username.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {%else%}
+                {% endif %}
                 {{ form.email(class="form-control form-control-lg") }}
             </div>
             <div class="form-group">
@@ -27,5 +37,10 @@
         </div>
     </form>
 
+</div>
+<div class="border-top pt-3">
+    <small class="test-muted">
+        Already Have an Account? <a class="ml-2" href="{{ url_for('login') }}"> Sign In</a>
+    </small>
 </div>
 {% endblock content %}
